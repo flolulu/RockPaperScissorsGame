@@ -1,0 +1,42 @@
+# Rock, Paper, Scissors Game
+import sys
+
+Loss = 0
+Wins = 0
+Ties = 0
+
+print('ROCK, PAPER, SCISSORS')
+print(str(Wins) + ' Wins, ' + str(Loss) + ' Losses, ' + str(Ties) + ' Ties') 
+# print scoreboard
+print('Enter your move: (r)ock (p)aper (s)cissors or (q)uit')
+# tell user input choices
+
+while True:
+    move = input
+
+    if move == 'p':
+        # p for paper
+        print('PAPER versus... \n PAPER')
+        print('It is a tie!')
+        Ties += 1
+        Loss += 1
+        # counter for scoreboard, increase by 1
+        
+    elif move == 's':
+        # s for scissors
+        print('SCISSORS versus... \n PAPER')
+        print('You win!')
+        Wins += 1
+        # counter for scoreboard, increase by 1
+            
+    elif move == 'r':
+            print('ROCK versus... \n PAPER')
+            print('You lose!')
+            Loss += 1
+        
+    elif move == 'q':
+            sys.exit()
+    
+    print(str(Wins) + ' Wins, ' + str(Loss) + ' Losses, ' + str(Ties) + ' Ties') 
+
+
