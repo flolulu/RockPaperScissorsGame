@@ -1,42 +1,84 @@
 # Rock, Paper, Scissors Game
-import sys
+import sys, random
+# random so we can call 'random.randint()' function
+# sys so we can call 'sys.exit()' function
 
+#set up variables
 Loss = 0
 Wins = 0
 Ties = 0
 
 print('ROCK, PAPER, SCISSORS')
-print(str(Wins) + ' Wins, ' + str(Loss) + ' Losses, ' + str(Ties) + ' Ties') 
-# print scoreboard
-print('Enter your move: (r)ock (p)aper (s)cissors or (q)uit')
-# tell user input choices
 
+# main game loop
 while True:
-    move = input
-
+    # print scoreboard
+    print(str(Wins) + ' Wins, ' + str(Loss) + ' Losses, ' + str(Ties) + ' Ties') 
+    
+    #print('% Wins, %s Losses, %s Ties' %(Wins, Loss, Ties))
+    
+    
+    # ask for input loop
+    while True:
+        print('Enter your move: (r)ock (p)aper (s)cissors or (q)uit')
+        move = input()
+        
+        if move == 'q':
+                sys.exit() #quit program
+                # quit function should always e first
+            
+        if move == 'p' or move == 's' or move == 'r':
+           break
+           # need to break out of the input loop 
+           # or the system will keep asking forever
+        print(str(Wins) + ' Wins, ' + str(Loss) + ' Losses, ' + str(Ties) + ' Ties') 
+        
+    # Display what player chooses
     if move == 'p':
         # p for paper
-        print('PAPER versus... \n PAPER')
-        print('It is a tie!')
-        Ties += 1
-        Loss += 1
-        # counter for scoreboard, increase by 1
-        
+        print('PAPER versus...')
+    
     elif move == 's':
         # s for scissors
-        print('SCISSORS versus... \n PAPER')
-        print('You win!')
-        Wins += 1
-        # counter for scoreboard, increase by 1
-            
+        print('SCISSORS versus...')
+                
     elif move == 'r':
-            print('ROCK versus... \n PAPER')
-            print('You lose!')
-            Loss += 1
+            print('ROCK versus...')
+            
+    # Display what computer chooses
+    # make use of random number generator to randomized comp choices
         
-    elif move == 'q':
-            sys.exit()
-    
-    print(str(Wins) + ' Wins, ' + str(Loss) + ' Losses, ' + str(Ties) + ' Ties') 
-
+    randomNumber = random.randint(1, 3)
+    if randomNumber == 1:
+        computerMove = 'r'
+        print('ROCK')
+    elif randomNumber == 2:
+        computerMove = 'p'
+        print('PAPER')
+    elif randomNumber == 3:
+        computerMove = 's'
+        print('SCISSORS')
+        
+    # Display and record the win/loss/tie:
+    if move == computerMove:
+        print('It is a tie!')
+        Ties = Ties+1
+    elif move =='r' and computerMove == 's':
+        print('You win')
+        Wins = Wins+1
+    elif move == 'p' and computerMove == 'r':
+        print('You win!')
+        Wins = Wins+1
+    elif move == 's' and computerMove == 'p':
+        print('You win!')
+        Wins = Wins+1
+    elif move == 's' and computerMove == 'r':
+        print('You lose!')
+        Loss = Loss+1
+    elif move == 'r' and computerMove == 'p':
+        print('You lose!')
+        Loss = Loss+1
+    elif move == 'p' and computerMove == 's':
+        print('You lose!')
+        Loss = Loss+1
 
